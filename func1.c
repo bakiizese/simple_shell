@@ -73,3 +73,4 @@ int _putchar(char c)
 		b[j++] = c;
 	return (1);
 }
+
