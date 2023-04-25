@@ -130,3 +130,4 @@ int re_hist(inf_o *inf)
 	}
 	return (inf->hcount = i);
 }
+
