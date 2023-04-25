@@ -1,11 +1,9 @@
-/*
- * File: history
- * Auth: Bereket Zeselassie
- *       Mahder Gebremikael
- */
-
 #include "shell.h"
-
+/**
+ * ghist_file - func
+ * @inf: struct
+ * Return: b
+ */
 char *ghist_file(inf_o *inf)
 {
 	char *b, *d;
@@ -22,7 +20,11 @@ char *ghist_file(inf_o *inf)
 	_strcat(b, H_F);
 	return (b);
 }
-
+/**
+ * w_hist - func
+ * @inf: struct
+ * Return: 1
+ */
 int w_hist(inf_o *inf)
 {
 	ssize_t f;
@@ -45,7 +47,11 @@ int w_hist(inf_o *inf)
 	close(f);
 	return (1);
 }
-
+/**
+ * r_hist - func
+ * @inf: struct
+ * Return: inf
+ */
 int r_hist(inf_o *inf)
 {
 	int i, l = 0, lc = 0;
@@ -88,7 +94,13 @@ int r_hist(inf_o *inf)
 	re_hist(inf);
 	return (inf->hcount);
 }
-
+/**
+ * b_hist_list - func
+ * @inf: struct
+ * @b: char var
+ * @lc: int var
+ * Return: 0
+ */
 int b_hist_list(inf_o *inf, char *b, int lc)
 {
 	lists_t *n = NULL;
@@ -101,7 +113,11 @@ int b_hist_list(inf_o *inf, char *b, int lc)
 		inf->hist = n;
 	return (0);
 }
-
+/**
+ * re_hist - func
+ * @inf: struct
+ * Return: inf
+ */
 int re_hist(inf_o *inf)
 {
 	lists_t *n = inf->hist;
