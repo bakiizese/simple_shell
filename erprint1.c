@@ -30,6 +30,12 @@ int _eatoi(char *str)
 	return (l);
 }
 
+/*
+ * File: erprint1
+ * Auth: Bereket Zeselassie
+ *       Mahder Gebremikael
+ */
+
 void p_err(inf_o *inf, char *str)
 {
 	_eputs(inf->fn);
@@ -100,6 +106,12 @@ char *conv_n(long int m, int bs, int f)
 		*--p = s;
 	return (p);
 }
+
+/*
+ * File: erprint1
+ * Auth: Bereket Zeselassie
+ *       Mahder Gebremikael
+ */
 
 void r_comm(char *b)
 {
