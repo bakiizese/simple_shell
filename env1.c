@@ -68,7 +68,7 @@ int munsetenv(inf_o *inf)
 	return (0);
 }
 /**
- * penv - entry
+ * penv_list - entry
  * @inf: var
  * Return: 0
  */

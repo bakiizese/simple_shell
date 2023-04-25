@@ -1,8 +1,8 @@
 #include "shell.h"
 /**
  * iscmd - entry
- * @p: var
  * @inf: var
+ * @p: var
  * Return: 0
  */
 int iscmd(inf_o *inf, char *p)
@@ -41,7 +41,7 @@ char *char_dp(char *p, int s, int st)
 }
 /**
  * fd_p - entry
- * @p: var
+ * @inf: var
  * @ps: var
  * @c: var
  * Return: 0
@@ -82,7 +82,7 @@ char *fd_p(inf_o *inf, char *ps, char *c)
 }
 /**
  * _strncpy - entry
- * @p: dest
+ * @dest: var
  * @src: var
  * @n: var
  * Return: s
@@ -107,7 +107,7 @@ char *_strncpy(char *dest, char *src, int n)
 }
 /**
  * _strncat - entry
- * @p: dest
+ * @dest: dest
  * @src: var
  * @n: var
  * Return: s

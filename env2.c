@@ -17,6 +17,7 @@ char **genvn(inf_o *inf)
 /**
  * _unsetenv - entry
  * @inf: var
+ * @l: var
  * Return: 0
  */
 int _unsetenv(inf_o *inf, char *l)

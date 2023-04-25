@@ -149,7 +149,6 @@ void *_realloc(void *ptr, unsigned int o, unsigned int n)
 	o = o < n ? o : n;
 	while (o--)
 		p[o] = ((char *)ptr)[o];
-	
 	free(ptr);
 	return (p);
 }

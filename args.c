@@ -44,7 +44,7 @@ void st_inf(inf_o *inf, char **v)
 /**
  * fr_inf - entry
  * @inf: var
- * @inf: l
+ * @l: var
  */
 void fr_inf(inf_o *inf, int l)
 {
