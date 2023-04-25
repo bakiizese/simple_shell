@@ -1,11 +1,9 @@
-/*
- * File: erprint1
- * Auth: Bereket Zeselassie
- *       Mahder Gebremikael
- */
-
 #include "shell.h"
-
+/**
+ * _eatoi - func
+ * @str: string
+ * Return: l
+ */
 int _eatoi(char *str)
 {
 	int i = 0;
@@ -29,13 +27,11 @@ int _eatoi(char *str)
 	}
 	return (l);
 }
-
-/*
- * File: erprint1
- * Auth: Bereket Zeselassie
- *       Mahder Gebremikael
+/**
+ * p_err - func
+ * @inf: struct
+ * @str: string
  */
-
 void p_err(inf_o *inf, char *str)
 {
 	_eputs(inf->fn);
@@ -46,7 +42,12 @@ void p_err(inf_o *inf, char *str)
 	_eputs(": ");
 	_eputs(str);
 }
-
+/**
+ * p_d - func
+ * @in: int var
+ * @f: int var
+ * Return: j
+ */
 int p_d(int in, int f)
 {
 	int (*__putchar)(char) = _putchar;
@@ -78,7 +79,13 @@ int p_d(int in, int f)
 
 	return (j);
 }
-
+/**
+ * conv_n - func
+ * @m: int var
+ * @bs: buf
+ * @f: int var
+ * Return: p
+ */
 char *conv_n(long int m, int bs, int f)
 {
 	static char *r;
@@ -106,13 +113,10 @@ char *conv_n(long int m, int bs, int f)
 		*--p = s;
 	return (p);
 }
-
-/*
- * File: erprint1
- * Auth: Bereket Zeselassie
- *       Mahder Gebremikael
+/**
+ * r_comm - void func
+ * @b: char var
  */
-
 void r_comm(char *b)
 {
 	int i = 0;
