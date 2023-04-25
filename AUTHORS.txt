@@ -1,0 +1,5 @@
+# This file lists all contributors to the repository.
+
+
+Bereket Zeselassie <bereketzeselassie@gmail.com>
+Mahder Gebremikael Gebremikael <mahderp1@gmail.com>
