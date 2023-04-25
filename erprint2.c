@@ -69,3 +69,4 @@ int _putsfd(char *s, int f)
 	}
 	return (i);
 }
+
