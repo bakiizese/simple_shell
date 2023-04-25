@@ -1,11 +1,9 @@
-/*
- * File: func2
- * Auth: Bereket Zeselassie
- *       Mahder Gebremikael
- */
-
 #include "shell.h"
-
+/**
+ * _strlen - func
+ * @s: char var
+ * Return: j
+ */
 int _strlen(char *s)
 {
 	int j = 0;
@@ -17,7 +15,12 @@ int _strlen(char *s)
 		j++;
 	return (j);
 }
-
+/**
+ * _strcmp - func
+ * @s1: char var
+ * @s2: char var
+ * Return: 1 or -1
+ */
 int _strcmp(char *s1, char *s2)
 {
 	while (*s1 && *s2)
@@ -32,7 +35,12 @@ int _strcmp(char *s1, char *s2)
 	else
 		return (*s1 < *s2 ? -1 : 1);
 }
-
+/**
+ * st_wi - func
+ * @haystack: char var
+ * @needle: char var
+ * Return: haystack
+ */
 char *st_wi(const char *haystack, const char *needle)
 {
 	while (*needle)
@@ -40,7 +48,12 @@ char *st_wi(const char *haystack, const char *needle)
 			return (NULL);
 	return ((char *)haystack);
 }
-
+/**
+ * _strcat - func
+ * @dest: char var
+ * @src: char var
+ * Return: ret
+ */
 char *_strcat(char *dest, char *src)
 {
 	char *ret = dest;
