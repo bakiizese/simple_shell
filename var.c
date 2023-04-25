@@ -1,11 +1,11 @@
-/*
- * File: var
- * Auth: Bereket Zeselassie
- *       Mahder Gebremikael
- */
-
 #include "shell.h"
-
+/**
+ * ischain - func
+ * @inf: struct
+ * @b: char var
+ * @p: struct
+ * Return: 1
+ */
 int ischain(inf_o *inf, char *b, size_t *p)
 {
 	size_t i = *p;
@@ -32,7 +32,14 @@ int ischain(inf_o *inf, char *b, size_t *p)
 	*p = i;
 	return (1);
 }
-
+/**
+ * chchain - void func
+ * @inf: struct
+ * @b: char var
+ * @p: struct
+ * @i: struct
+ * @l: struct
+ */
 void chchain(inf_o *inf, char *b, size_t *p, size_t i, size_t l)
 {
 	size_t k = *p;
@@ -56,7 +63,11 @@ void chchain(inf_o *inf, char *b, size_t *p, size_t i, size_t l)
 
 	*p = k;
 }
-
+/**
+ * re_alias - func
+ * @inf: struct
+ * Return: 1
+ */
 int re_alias(inf_o *inf)
 {
 	int j = 0;
@@ -79,7 +90,11 @@ int re_alias(inf_o *inf)
 	}
 	return (1);
 }
-
+/**
+ * re_vars - func
+ * @inf: struct
+ * Return: 0
+ */
 int re_vars(inf_o *inf)
 {
 	int i = 0;
@@ -113,7 +128,12 @@ int re_vars(inf_o *inf)
 	}
 	return (0);
 }
-
+/**
+ * re_string - func
+ * @o: char var
+ * @n: char var
+ * Return: 1
+ */
 int re_string(char **o, char *n)
 {
 	free(*o);
