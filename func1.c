@@ -1,11 +1,10 @@
-/*
- * File: func1
- * Auth: Bereket Zeselassie
- *       Mahder Gebremikael
- */
-
 #include "shell.h"
-
+/**
+ * _strcpy - func
+ * @dest: char var
+ * @src: char var
+ * Return: dest
+ */
 char *_strcpy(char *dest, char *src)
 {
 	int i = 0;
@@ -19,7 +18,11 @@ char *_strcpy(char *dest, char *src)
 	dest[i] = 0;
 	return (dest);
 }
-
+/**
+ * _strdup - func
+ * @str: string
+ * Return: r
+ */
 char *_strdup(const char *str)
 {
 	int l = 0;
@@ -36,7 +39,10 @@ char *_strdup(const char *str)
 		r[l] = *--str;
 	return (r);
 }
-
+/**
+ * _puts - void func
+ * @str: string
+ */
 void _puts(char *str)
 {
 	int j = 0;
@@ -48,7 +54,11 @@ void _puts(char *str)
 		_putchar(str[j]);
 	}
 }
-
+/**
+ * _putchar - func
+ * @c: char var
+ * Return: 1
+ */
 int _putchar(char c)
 {
 	static int j;
