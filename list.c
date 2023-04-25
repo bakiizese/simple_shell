@@ -1,11 +1,11 @@
-/*
- * File: list
- * Auth: Bereket Zeselassie
- *       Mahder Gebremikael
- */
-
 #include "shell.h"
-
+/**
+ * add_node - struct
+ * @h: struct
+ * @str: string
+ * @n: var
+ * Return: new
+ */
 lists_t *add_node(lists_t **h, const char *str, int n)
 {
 	lists_t *new;
@@ -30,7 +30,13 @@ lists_t *add_node(lists_t **h, const char *str, int n)
 	*h = new;
 	return (new);
 }
-
+/**
+ * add_node_end - struct
+ * @h: var
+ * @str: var
+ * @n: var
+ * Return: 0
+ */
 lists_t *add_node_end(lists_t **h, const char *str, int n)
 {
 	lists_t *new, *on;
@@ -63,7 +69,11 @@ lists_t *add_node_end(lists_t **h, const char *str, int n)
 		*h = new;
 	return (new);
 }
-
+/**
+ * p_list_str - struct
+ * @h: struct
+ * Return: 0
+ */
 size_t p_list_str(const lists_t *h)
 {
 	size_t j = 0;
@@ -75,10 +85,14 @@ size_t p_list_str(const lists_t *h)
 		h = h->next;
 		j++;
 	}
-	
 	return (j);
 }
-
+/**
+ * delete_node_at_i - func
+ * @h: struct
+ * @i: var
+ * Return: 0
+ */
 int delete_node_at_i(lists_t **h, unsigned int i)
 {
 	lists_t *n, *old;
@@ -111,7 +125,10 @@ int delete_node_at_i(lists_t **h, unsigned int i)
 	}
 	return (0);
 }
-
+/**
+ * fr_list - func
+ * @h_ptr: struct
+ */
 void fr_list(lists_t **h_ptr)
 {
 	lists_t *n, *h, *new;
