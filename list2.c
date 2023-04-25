@@ -1,11 +1,9 @@
-/*
- * File: list2
- * Auth: Bereket Zeselassie
- *       Mahder Gebremikael
- */
-
 #include "shell.h"
-
+/**
+ * l_len - struct
+ * @head: struct
+ * Return: j
+ */
 size_t l_len(const lists_t *head)
 {
 	size_t j = 0;
@@ -17,7 +15,11 @@ size_t l_len(const lists_t *head)
 	}
 	return (j);
 }
-
+/**
+ * l_to_s - func
+ * @head: struct
+ * Return: tr
+ */
 char **l_to_s(lists_t *head)
 {
 	lists_t *n = head;
@@ -47,7 +49,11 @@ char **l_to_s(lists_t *head)
 	tr[i] = NULL;
 	return (tr);
 }
-
+/**
+ * p_list - struct
+ * @head: struct
+ * Return: j
+ */
 size_t p_list(const lists_t *head)
 {
 	size_t j = 0;
@@ -64,7 +70,13 @@ size_t p_list(const lists_t *head)
 	}
 	return (j);
 }
-
+/**
+ * node_starts_with - func
+ * @n: struct
+ * @pre: char var
+ * @c: char var
+ * Return: NULL
+ */
 lists_t *node_starts_with(lists_t *n, char *pre, char c)
 {
 	char *p = NULL;
@@ -78,7 +90,12 @@ lists_t *node_starts_with(lists_t *n, char *pre, char c)
 	}
 	return (NULL);
 }
-
+/**
+ * get_node_i - struct
+ * @head: struct
+ * @n: struct
+ * Return: -1
+ */
 ssize_t get_node_i(lists_t *head, lists_t *n)
 {
 	size_t j = 0;
