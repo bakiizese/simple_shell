@@ -1,111 +1,67 @@
 #include "shell.h"
 /**
- * l_len - struct
- * @head: struct
- * Return: j
+ * interactive - func
+ * @inf: struct
+ * Return: func
  */
-size_t l_len(const lists_t *head)
+int interactive(inf_o *inf)
 {
-	size_t j = 0;
-
-	while (head)
-	{
-		head = head->next;
-		j++;
-	}
-	return (j);
+	return (isatty(STDIN_FILENO) && inf->readfd <= 2);
 }
 /**
- * l_to_s - func
- * @head: struct
- * Return: tr
- */
-char **l_to_s(lists_t *head)
-{
-	lists_t *n = head;
-	size_t i = l_len(head), k;
-	char **tr;
-	char *st;
-
-	if (!head || !i)
-		return (NULL);
-	tr = malloc(sizeof(char *) * (i + 1));
-	if (!tr)
-		return (NULL);
-	for (i = 0; n; n = n->next, i++)
-	{
-		st = malloc(_strlen(n->str) + 1);
-		if (!st)
-		{
-			for (k = 0; k < i; k++)
-				free(tr[i]);
-			free(tr);
-			return (NULL);
-		}
-
-		st = _strcpy(st, n->str);
-		tr[i] = st;
-	}
-	tr[i] = NULL;
-	return (tr);
-}
-/**
- * p_list - struct
- * @head: struct
- * Return: j
- */
-size_t p_list(const lists_t *head)
-{
-	size_t j = 0;
-
-	while (head)
-	{
-		_puts(conv_n(head->n, 10, 0));
-		_putchar(':');
-		_putchar(' ');
-		_puts(head->str ? head->str : "(nil)");
-		_puts("\n");
-		head = head->next;
-		j++;
-	}
-	return (j);
-}
-/**
- * node_starts_with - func
- * @n: struct
- * @pre: char var
+ * is_delim - func
  * @c: char var
- * Return: NULL
+ * @l: char l
+ * Return: 0
  */
-lists_t *node_starts_with(lists_t *n, char *pre, char c)
+int is_delim(char c, char *l)
 {
-	char *p = NULL;
-
-	while (n)
-	{
-		p = st_wi(n->str, pre);
-		if (p && ((c == -1) || (*p == c)))
-			return (n);
-		n = n->next;
-	}
-	return (NULL);
+	while (*l)
+		if (*l++ == c)
+			return (1);
+	return (0);
 }
 /**
- * get_node_i - struct
- * @head: struct
- * @n: struct
- * Return: -1
+ * _isalpha - func
+ * @c: var
+ * Return: 0
  */
-ssize_t get_node_i(lists_t *head, lists_t *n)
+int _isalpha(int c)
 {
-	size_t j = 0;
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
+}
+/**
+ * _atoi - func
+ * @s: char var
+ * Return: t
+ */
+int _atoi(char *s)
+{
+	int i, n = 1, f = 0, t;
+	unsigned int r = 0;
 
-	while (head)
+	for (i = 0;  s[i] != '\0' && f != 2; i++)
 	{
-		if (head == n)
-			return (j);
-		head = head->next;
-		j++;
+		if (s[i] == '-')
+			n *= -1;
+
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			f = 1;
+			r *= 10;
+			r += (s[i] - '0');
+		}
+		else if (f == 1)
+			f = 2;
 	}
-	return (-1);
+
+	if (n == -1)
+		t = -r;
+	else
+		t = r;
+
+	return (t);
 }
