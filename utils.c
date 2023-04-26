@@ -1,148 +1,67 @@
 #include "shell.h"
 /**
- * add_node - struct
- * @h: struct
- * @str: string
- * @n: var
- * Return: new
+ * interactive - func
+ * @inf: struct
+ * Return: func
  */
-lists_t *add_node(lists_t **h, const char *str, int n)
+int interactive(inf_o *inf)
 {
-	lists_t *new;
-
-	if (!h)
-		return (NULL);
-	new = malloc(sizeof(lists_t));
-	if (!new)
-		return (NULL);
-	memset((void *)new, 0, sizeof(lists_t));
-	new->n = n;
-	if (str)
-	{
-		new->str = _strdup(str);
-		if (!new->str)
-		{
-			free(new);
-			return (NULL);
-		}
-	}
-	new->next = *h;
-	*h = new;
-	return (new);
+	return (isatty(STDIN_FILENO) && inf->readfd <= 2);
 }
 /**
- * add_node_end - struct
- * @h: var
- * @str: var
- * @n: var
+ * is_delim - func
+ * @c: char var
+ * @l: char l
  * Return: 0
  */
-lists_t *add_node_end(lists_t **h, const char *str, int n)
+int is_delim(char c, char *l)
 {
-	lists_t *new, *on;
-
-	if (!h)
-		return (NULL);
-
-	on = *h;
-	new = malloc(sizeof(lists_t));
-	if (!new)
-		return (NULL);
-	memset((void *)new, 0, sizeof(lists_t));
-	new->n = n;
-	if (str)
-	{
-		new->str = _strdup(str);
-		if (!new->str)
-		{
-			free(new);
-			return (NULL);
-		}
-	}
-	if (on)
-	{
-		while (on->next)
-			on = on->next;
-		on->next = new;
-	}
-	else
-		*h = new;
-	return (new);
-}
-/**
- * p_list_str - struct
- * @h: struct
- * Return: 0
- */
-size_t p_list_str(const lists_t *h)
-{
-	size_t j = 0;
-
-	while (h)
-	{
-		_puts(h->str ? h->str : "(nil)");
-		_puts("\n");
-		h = h->next;
-		j++;
-	}
-	return (j);
-}
-/**
- * delete_node_at_i - func
- * @h: struct
- * @i: var
- * Return: 0
- */
-int delete_node_at_i(lists_t **h, unsigned int i)
-{
-	lists_t *n, *old;
-	unsigned int j = 0;
-
-	if (!h || !*h)
-		return (0);
-
-	if (!i)
-	{
-		n = *h;
-		*h = (*h)->next;
-		free(n->str);
-		free(n);
-		return (1);
-	}
-	n = *h;
-	while (n)
-	{
-		if (j == i)
-		{
-			old->next = n->next;
-			free(n->str);
-			free(n);
+	while (*l)
+		if (*l++ == c)
 			return (1);
-		}
-		i++;
-		old = n;
-		n = n->next;
-	}
 	return (0);
 }
 /**
- * fr_list - func
- * @h_ptr: struct
+ * _isalpha - func
+ * @c: var
+ * Return: 0
  */
-void fr_list(lists_t **h_ptr)
+int _isalpha(int c)
 {
-	lists_t *n, *h, *new;
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
+}
+/**
+ * _atoi - func
+ * @s: char var
+ * Return: t
+ */
+int _atoi(char *s)
+{
+	int i, n = 1, f = 0, t;
+	unsigned int r = 0;
 
-	if (!*h_ptr || !h_ptr)
-		return;
-	h = *h_ptr;
-	n = h;
-	while (n)
+	for (i = 0;  s[i] != '\0' && f != 2; i++)
 	{
-		new = n->next;
-		free(n->str);
-		free(n);
-		n = new;
+		if (s[i] == '-')
+			n *= -1;
+
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			f = 1;
+			r *= 10;
+			r += (s[i] - '0');
+		}
+		else if (f == 1)
+			f = 2;
 	}
-	*h_ptr = NULL;
+
+	if (n == -1)
+		t = -r;
+	else
+		t = r;
+
+	return (t);
 }
