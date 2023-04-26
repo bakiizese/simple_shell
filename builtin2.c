@@ -1,104 +1,105 @@
 #include "shell.h"
 /**
- * mhist - entry
+ * mexit - entry
  * @inf: var
- * Return: 0
+ * Return: -2
  */
-int mhist(inf_o *inf)
+int mexit(inf_o *inf)
 {
-	p_list(inf->hist);
-	return (0);
-}
-/**
- * unst_alias - entry
- * @inf: var
- * @s: var
- * Return: 0
- */
-int unst_alias(inf_o *inf, char *s)
-{
-	char *p, i;
-	int t;
+	int x;
 
-	p = _strchr(s, '=');
-	if (!p)
-		return (1);
-	i = *p;
-	*p = 0;
-	t = delete_node_at_i(&(inf->alias),
-		get_node_i(inf->alias, node_starts_with(inf->alias, s, -1)));
-	*p = i;
-	return (t);
-}
-/**
- * st_alias - entry
- * @inf: var
- * @s: var
- * Return: 0
- */
-int st_alias(inf_o *inf, char *s)
-{
-	char *p;
-
-	p = _strchr(s, '=');
-	if (!p)
-		return (1);
-	if (!*++p)
-		return (unst_alias(inf, s));
-
-	unst_alias(inf, s);
-	return (add_node_end(&(inf->alias), s, 0) == NULL);
-}
-/**
- * p_alias - entry
- * @n: var
- * Return: 1
- */
-int p_alias(lists_t *n)
-{
-	char *p = NULL, *s = NULL;
-
-	if (n)
+	if (inf->argv[1])
 	{
-		p = _strchr(n->str, '=');
-		for (s = n->str; s <= p; s++)
-			_putchar(*s);
-		_putchar('\'');
-		_puts(p + 1);
-		_puts("'\n");
-		return (0);
-	}
-	return (1);
-}
-/**
- * malias - entry
- * @inf: var
- * Return: 0
- */
-int malias(inf_o *inf)
-{
-	int j = 0;
-	char *p = NULL;
-	lists_t *n = NULL;
-
-	if (inf->argc == 1)
-	{
-		n = inf->alias;
-		while (n)
+		x = _eatoi(inf->argv[1]);
+		if (x == -1)
 		{
-			p_alias(n);
-			n = n->next;
+			inf->stat = 2;
+			p_err(inf, "Illegal number: ");
+			_eputs(inf->argv[1]);
+			_eputchar('\n');
+			return (1);
 		}
-		return (0);
+		inf->err_n = _eatoi(inf->argv[1]);
+		return (-2);
 	}
-	for (j = 1; inf->argv[j]; j++)
-	{
-		p = _strchr(inf->argv[j], '=');
-		if (p)
-			st_alias(inf, inf->argv[j]);
-		else
-			p_alias(node_starts_with(inf->alias, inf->argv[j], '='));
-	}
+	inf->err_n = -1;
+	return (-2);
+}
+/**
+ * mcd - entry
+ * @inf: var
+ * Return: 0
+ */
+int mcd(inf_o *inf)
+{
+	char *s, *d, b[1024];
+	int r;
 
+	s = getcwd(b, 1024);
+	if (!s)
+		_puts("TODO: >>getcd failure emsg here<<\n");
+	if (!inf->argv[1])
+	{
+		d = genv(inf, "HOME=");
+		if (!d)
+			r = /* TODO: what should this be? */
+				chdir((d = genv(inf, "PWD=")) ? d : "/");
+		else
+			r = chdir(d);
+	}
+	else if (_strcmp(inf->argv[1], "-") == 0)
+	{
+		if (!genv(inf, "OLDPWD="))
+		{
+			_puts(s);
+			_putchar('\n');
+			return (1);
+		}
+		_puts(genv(inf, "OLDPWD=")), _putchar('\n');
+		r = /* TODO: what should this be? */
+			chdir((d = genv(inf, "OLDPWD=")) ? d : "/");
+	}
+	else
+		r = chdir(inf->argv[1]);
+	if (r == -1)
+	{
+		p_err(inf, "can't cd to ");
+		_eputs(inf->argv[1]), _eputchar('\n');
+	}
+	else
+	{
+		stenv(inf, "OLDPWD", genv(inf, "PWD="));
+		stenv(inf, "PWD", getcwd(b, 1024));
+	}
 	return (0);
+}
+/**
+ * mhp - entry
+ * @inf: var
+ * Return: 0
+ */
+int mhp(inf_o *inf)
+{
+	char **i;
+
+	i = inf->argv;
+	_puts("help call works. Function not yet implemented \n");
+	if (0)
+		_puts(*i);
+	return (0);
+}
+/**
+ * _strchr - entry
+ * @s: var
+ * @c: var
+ * Return: NULL
+ */
+char *_strchr(char *s, char c)
+{
+	do {
+		if (*s == c)
+			return (s);
+	} while (*s++ != '\0');
+
+	return (NULL);
 }
